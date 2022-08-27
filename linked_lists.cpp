@@ -343,6 +343,25 @@ node* MergeSortedLinkedLists(node* &h1,node* &h2)
     }
     return dummy_node->next;
 }
+//Put even POsition Nodes after odd POsition nodes
+void evenAfterOdd(node* &head)
+{
+    node* odd=head;
+    node* even=head->next;
+    node* evenStart =even;
+    while(odd->next!=NULL && even->next!=NULL)
+    {
+        odd->next=even->next;
+        odd=odd->next;
+        even->next=odd->next;
+        even=even->next;
+    }
+    odd->next=evenStart;
+    if(odd->next!=NULL)
+    {
+        even->next=NULL;
+    }
+}
 
 int main()
 {
@@ -394,6 +413,8 @@ int main()
     // display(head);
     // cout<<findIntersection(head,head1);
     display(MergeSortedLinkedLists(head2,head1));
+    evenAfterOdd(head1);
+    display(head1);
 
 
 }
